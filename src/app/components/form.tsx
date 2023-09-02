@@ -11,6 +11,7 @@ export default function Form({}: Props) {
     const [formResult, isFormResult] = useState(false)
 
     const [text, setText] = useState('')
+    const [result, setResult] = useState('')
 
     const clearText = () => {
         setText('') 
@@ -47,7 +48,7 @@ export default function Form({}: Props) {
                                 คัดลอก
                             </button>
                         </div>
-                    <textarea name="text" id="text" value={text} rows={10} onChange={e => { setText(e.target.value)}} className="bg-gray-200 rounded-b-lg p-4 border-2 border-black resize-none mx-auto w-full outline-none"></textarea>
+                    <textarea disabled name="text" id="text" value={result} rows={10} className="bg-gray-200 rounded-b-lg p-4 border-2 border-black resize-none mx-auto w-full outline-none"></textarea>
                 </form>
 
         </div>
