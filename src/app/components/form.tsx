@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
+import { textFormat } from "../utils/utilityFunction";
 
 type Props = {};
 
@@ -11,7 +12,7 @@ export default function Form({}: Props) {
     const [formResult, isFormResult] = useState(false)
 
     const [text, setText] = useState('')
-    const [result, setResult] = useState('result')
+    const [result, setResult] = useState('')
 
     const [copy, setCopy] = useState('คัดลอก')
 
@@ -20,13 +21,19 @@ export default function Form({}: Props) {
         setText('') 
     }
 
-    const processText = () => {
+    const processText = async () => {
         if (text == '') return
         isFormGetText(false)
         isFormLoding(true)
 
         //Start Process
-        console.log('Test...');
+        await fetch('https://fix-text-pdf-api.lolazy.repl.co/process',{
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            body: JSON.stringify({ text: text })
+        }).then((res) => res.json())
+        .then((data) => setResult(data['result']))
+        .catch((error) => console.error(error));
         //End Process
 
         isFormLoding(false)
@@ -37,7 +44,7 @@ export default function Form({}: Props) {
         isFormResult(false)
         isFormGetText(true)
         setText('')
-        setResult('Result')
+        setResult('')
         setCopy('คัดลอก')
     }
 
@@ -63,7 +70,7 @@ export default function Form({}: Props) {
             }
             {formLoding && 
                 <form className="grid content-start">
-                    <div className="flex justify-center py-4 md:justify-end md:px-8   bg-black text-white rounded-t-lg">
+                    <div className="flex justify-center py-4 md:justify-end md:px-8 bg-black text-white rounded-t-lg">
                         กำลังประมวลผล...
                     </div>
                     <textarea disabled name="text" id="text" value={text} rows={15} className="bg-gray-200  p-4 border-x-2 border-black resize-none mx-auto w-full outline-none"></textarea>
