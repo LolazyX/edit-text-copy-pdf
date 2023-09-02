@@ -11,7 +11,9 @@ export default function Form({}: Props) {
     const [formResult, isFormResult] = useState(false)
 
     const [text, setText] = useState('')
-    const [result, setResult] = useState('')
+    const [result, setResult] = useState('result')
+
+    const [copy, setCopy] = useState('คัดลอก')
 
     const clearText = () => {
         if (text == '') return
@@ -20,9 +22,28 @@ export default function Form({}: Props) {
 
     const processText = () => {
         if (text == '') return
-
         isFormGetText(false)
         isFormLoding(true)
+
+        //Start Process
+        console.log('Test...');
+        //End Process
+
+        isFormLoding(false)
+        isFormResult(true)
+    }
+
+    const newText = () => {
+        isFormResult(false)
+        isFormGetText(true)
+        setText('')
+        setResult('Result')
+        setCopy('คัดลอก')
+    }
+
+    const copyText = () => {
+        navigator.clipboard.writeText(result)
+        setCopy('คัดลอกแล้ว!')
     }
 
     return(
@@ -37,10 +58,7 @@ export default function Form({}: Props) {
                             จัดเรียงอักษรใหม่
                         </button>
                     </div>
-                    <textarea name="text" id="text" value={text} rows={15} maxLength={5000} onChange={e => { setText(e.target.value)}} className="bg-gray-200 p-4 border-x-2 border-black resize-none mx-auto w-full outline-none"></textarea>
-                    <div className="grid text-center md:text-right bg-black text-white rounded-b-lg py-1 px-4">
-                        {text.length} / 5000
-                    </div>
+                    <textarea name="text" id="text" value={text} rows={15} maxLength={5000} placeholder="คัดลอกตัวอักษรมาวางลงที่นี" onChange={e => { setText(e.target.value)}} className="bg-gray-200 p-4 border-x-2 border-black resize-none mx-auto w-full outline-none"></textarea>
                 </form>
             }
             {formLoding && 
@@ -49,27 +67,24 @@ export default function Form({}: Props) {
                         กำลังประมวลผล...
                     </div>
                     <textarea disabled name="text" id="text" value={text} rows={15} className="bg-gray-200  p-4 border-x-2 border-black resize-none mx-auto w-full outline-none"></textarea>
-                    <div className="grid text-center md:text-right bg-black text-white rounded-b-lg py-1 px-4">
-                        {text.length} / 5000
-                    </div>
                 </form>
             }
             {formResult &&
                  <form className="grid content-start">
                     <div className="grid grid-cols-2 text-center md:flex md:justify-between bg-black text-white rounded-t-lg">
-                        <button type="button" onClick={e => {clearText()}} className="py-4 px-0 md:px-8 hover:bg-gray-700 rounded-tl-lg">
+                        <button type="button" onClick={e => {newText()}} className="py-4 px-0 md:px-8 hover:bg-gray-700 rounded-tl-lg">
                             เริ่มต้นใหม่
                         </button>
-                        <button type="button" className="py-4 px-0 md:px-8 hover:bg-gray-700 rounded-tr-lg">
-                            คัดลอก
+                        <button type="button" onClick={(e) => {copyText()}} className="py-4 px-0 md:px-8 hover:bg-gray-700 rounded-tr-lg">
+                            {copy}
                         </button>
                     </div>
                     <textarea disabled name="text" id="text" value={result} rows={15} className="bg-gray-200 p-4 border-x-2 border-black resize-none mx-auto w-full outline-none"></textarea>
-                    <div className="grid text-center md:text-right bg-black text-white rounded-b-lg py-1 px-4">
-                        {text.length} / 5000
-                    </div>
                 </form>
             }
+            <div className="grid text-center md:text-right bg-black text-white rounded-b-lg shadow-lg py-1 px-4">
+                {text.length} / 5000
+            </div>
         </div>
   );
 }
