@@ -6,7 +6,7 @@ type Props = {};
 
 export default function Center({}: Props) {
   return(
-    <div className="grid md:content-center lg:mx-4">
+    <div className="grid content-start lg:mx-4">
         <Form />
     </div>
     
