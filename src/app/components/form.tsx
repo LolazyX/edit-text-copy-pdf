@@ -58,7 +58,7 @@ export default function Form({}: Props) {
                             จัดเรียงอักษรใหม่
                         </button>
                     </div>
-                    <textarea name="text" id="text" value={text} rows={15} maxLength={5000} placeholder="คัดลอกตัวอักษรมาวางลงที่นี" onChange={e => { setText(e.target.value)}} className="bg-gray-200 p-4 border-x-2 border-black resize-none mx-auto w-full outline-none"></textarea>
+                    <textarea name="text" id="text" value={text} rows={15} maxLength={5000} placeholder="คัดลอกตัวอักษรมาวางลงที่นี่..." onChange={e => { setText(e.target.value)}} className="bg-gray-200 p-4 border-x-2 border-black resize-none mx-auto w-full outline-none"></textarea>
                 </form>
             }
             {formLoding && 
