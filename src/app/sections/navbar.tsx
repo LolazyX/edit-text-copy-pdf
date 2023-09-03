@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faGithub,} from '@fortawesome/free-brands-svg-icons'
 import { faSun } from "@fortawesome/free-solid-svg-icons/faSun";
 
+
 type Props = {};
 
 export default function Navbar({}: Props) {

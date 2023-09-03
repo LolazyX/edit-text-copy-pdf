@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
-import { formatText } from "../api/format";
+import formatText from "../api/format";
 
 type Props = {};
 
