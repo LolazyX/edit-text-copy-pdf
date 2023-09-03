@@ -4,6 +4,8 @@ import React, { useState } from "react";
 
 type Props = {};
 
+const api = process.env.API_FIX_TEXT_PDF
+
 export default function Form({}: Props) {
 
     const [formGetText, isFormGetText] = useState(true)
@@ -26,7 +28,7 @@ export default function Form({}: Props) {
         isFormLoding(true)
 
         //Start Process
-        await fetch(String(process.env.API_FIX_TEXT_PDF),{
+        await fetch(`${api}`,{
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ text: text })
