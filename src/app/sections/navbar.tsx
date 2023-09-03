@@ -20,8 +20,6 @@ export default function Navbar({}: Props) {
                   <FontAwesomeIcon className='content-center w-6 hover:scale-110 transition-all' icon={faGithub} />
                 </Link>
               </div>
-
-              
             </div>
         </div>
     </nav>
