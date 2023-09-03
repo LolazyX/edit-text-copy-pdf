@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from "react";
+import { formatText } from "../api/format";
 
 type Props = {};
 
@@ -25,15 +26,8 @@ export default function Form({}: Props) {
         isFormGetText(false)
         isFormLoding(true)
 
-        //Start Process
-        await fetch(`https://lolazy.pythonanywhere.com/api`,{
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({ text: text })
-        }).then((res) => res.json())
-        .then((data) => setResult(data['result']))
-        .catch((error) => console.error(error));
-        //End Process
+        const formatTxt = await formatText(text)
+        setResult(formatTxt)
 
         isFormLoding(false)
         isFormResult(true)
