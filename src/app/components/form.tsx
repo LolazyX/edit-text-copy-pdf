@@ -27,7 +27,7 @@ export default function Form({}: Props) {
         isFormLoding(true)
 
         //Start Process
-        await fetch('https://fix-text-pdf-api.lolazy.repl.co/process',{
+        await fetch('https://lolazy.pythonanywhere.com/api',{
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({ text: text })
