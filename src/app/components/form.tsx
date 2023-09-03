@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from "react";
-import { textFormat } from "../utils/utilityFunction";
 
 type Props = {};
 
