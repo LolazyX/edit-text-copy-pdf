@@ -16,7 +16,7 @@ export default function Navbar({}: Props) {
             </div> 
             <div className="flex justify-end">
               <div className="grid grid-cols-1 content-center gap-x-4">
-                <Link href={'https://github.com/LolazyX'} target="_blank">
+                <Link href={'https://github.com/LolazyX/edit-text-copy-pdf'} target="_blank">
                   <FontAwesomeIcon className='content-center w-6 hover:scale-110 transition-all' icon={faGithub} />
                 </Link>
               </div>
